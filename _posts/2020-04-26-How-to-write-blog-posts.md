@@ -10,4 +10,4 @@ To start writing a blog post, we're going to need to set up the markdown page:
 
 Now you can start writing in Markdown. If you need reminders on how to write in Markdown:
 * Use google
-* use [this markdown to html converter](https://markdowntohtml.com/).
+* use this [markdown to html converter](https://markdowntohtml.com/).
