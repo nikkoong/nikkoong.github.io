@@ -11,4 +11,6 @@ I'll be updating this page with different projects that I've been working on. Ma
 
 ---
 
-# Check out some [quizbowl](https://www.naqt.com/)-adjacent <a href="/projects/saladbowl.md">salad trivia</a> that I've written.
+# Trivia
+
+Check out some [quizbowl](https://www.naqt.com/)-adjacent <a href="/projects/saladbowl.md">salad trivia</a> that I've written.
