@@ -9,4 +9,6 @@ I'll be updating this page with different projects that I've been working on. Ma
 
 <iframe width="798" height="449" src="https://www.youtube.com/embed/FQ1ssWsg0OY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
->Check out some [quizbowl](https://www.naqt.com/)-adjacent <a href="/projects/saladbowl.md">salad trivia</a> that I've written.
+---
+
+# Check out some [quizbowl](https://www.naqt.com/)-adjacent <a href="/projects/saladbowl.md">salad trivia</a> that I've written.
