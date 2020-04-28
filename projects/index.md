@@ -13,5 +13,7 @@ I'll be updating this page with different projects that I've been working on. Ma
 
 # Trivia
 
-Check out some [quizbowl](https://www.naqt.com/)-adjacent [salad trivia]({% link projects/saladbowl.md %}) that I've written.
+Check out some [quizbowl](https://www.naqt.com/)-adjacent [salad trivia]({% link projects/saladbowl.md %}) that I've written. 
+
+
 
