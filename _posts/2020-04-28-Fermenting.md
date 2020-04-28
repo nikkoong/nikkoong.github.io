@@ -21,7 +21,7 @@ I started my fermentation journey with a very basic sauerkraut. What's easier th
 - Cover the jar (with a paper towel, or a lid, or plastic wrap: whatever you have)
 - Let it sit on the counter for a bit (between 2 weeks and a month and a half)
 
-Sauerkraut is one of the most forgiving ferments out there. Really, trust me. It might look like a lot of steps, but just think about a task like frying an egg. There's a whole word of mess and steps that become second nature after putting in a little initial effort to learn.
+Sauerkraut is one of the most forgiving ferments out there. Really, trust me. It might look like a lot of steps, but just think about a task like frying an egg. There's a whole world of mess and steps that become second nature after putting in a little initial effort to learn.
 
 Sauerkraut, in my opinion, is all about flexibility. The wonderful thing about fermentation is that it, much like Thanos, is inevitable. It will happen, and it will taste good. What you do to it is just a little help along the way.
 
