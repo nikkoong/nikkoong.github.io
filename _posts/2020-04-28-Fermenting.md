@@ -4,7 +4,7 @@ title: Fermenting
 date: 2020-04-28
 ---
 
-#Fermentation: An Art, a Science?
+# Fermentation: An Art, a Science?
 
 It's a buzzword that gets thrown around a lot, I think. Fermented X, fermented Z. Fermented things for everyone to enjoy! It's a traditional dish- The nutritional benefits of fermentation are unparalleled - An ancient form of food preservation (before refrigerators).
 
@@ -33,6 +33,8 @@ Voila. You're done. You can be creative with your sauerkraut too. How will you m
 
 This is just the first toe dip in the exciting oceans of a culinary innovation that stretches back thousands of years. You're joining with your ancestors in fermentation harmony when you take a step back from the wonders of the modern kitchen and use the power of nature and time to create something special.
 
-You can't stop it. You can only embrace what is already going to happen. How will you ferment today?
+You can't stop it. You can only embrace what is already going to happen.
+
+# How will you ferment today?
 
 
