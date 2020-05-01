@@ -9,7 +9,7 @@ I'll be updating this page with different projects that I've been working on. Ma
 
 # Scaled Mock fUsion Reactor Facility (SMURF)
 
-<img src="files/smurf.png" alt="SMURF" width="1000"/>
+<img src="https://user-images.githubusercontent.com/47159312/80771751-65b91a00-8b22-11ea-89e4-979ba03b5a09.png" alt="SMURF" width="1000"/>
 
 ![image](https://user-images.githubusercontent.com/47159312/80771751-65b91a00-8b22-11ea-89e4-979ba03b5a09.png =1000x)
 
