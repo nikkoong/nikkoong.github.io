@@ -24,7 +24,7 @@ This [project](https://nikkoong.github.io/files/The-Octopus-Cometh-A-Journey-Int
 
 # Trivia
 
-Check out some [quizbowl](https://www.naqt.com/)-adjacent [salad trivia]({% link projects/saladbowl.md %}) that I've written. 
+Check out some [quizbowl](https://www.naqt.com/)-adjacent [salad trivia](nikkoong.github.io/projects/saladbowl.html) that I've written. 
 
 
 
