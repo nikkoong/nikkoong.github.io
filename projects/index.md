@@ -15,7 +15,10 @@ This was my McGill University capstone design project for the academic year 2019
 
 # Simplified CFD Analysis of an Aneurysm at the Iliac Bifurcation
 
-This project involved the use of ANSYS Fluent to model and analyze the pressure, velocity, and wall shear stress of viscous blood flow in and around the iliac bifurcation and abdominal aorta. Our group compared results from Fluent to results from medical journals that analyzed the effect of aneurysms on this region of the body. We incoporated heat transfer and pulsatile blood flow into the boundary conditions of the transient simulation to effectively model the mechanisms of actual blood flow. You can see a sample of the animations created [here](https://drive.google.com/file/d/1g600vlKsBh_z9s-iOwtEf-17UIQ9KaVV/view?usp=sharing).
+This project involved the use of ANSYS Fluent to model and analyze the pressure, velocity, and wall shear stress of viscous blood flow in and around the iliac bifurcation and abdominal aorta. Our group compared results from Fluent to results from medical journals that analyzed the effect of aneurysms on this region of the body. We incoporated heat transfer and pulsatile blood flow into the boundary conditions of the transient simulation to effectively model the mechanisms of actual blood flow. You can see a sample of the animations created [here](https://drive.google.com/file/d/1g600vlKsBh_z9s-iOwtEf-17UIQ9KaVV/view?usp=sharing). 
+
+<img src="/files/velocity_aneurysm.mp4">
+
 
 # A Literature Review on the Biomechanical Mechanisms of Octopus Suckers 
 
