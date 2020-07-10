@@ -18,7 +18,6 @@ This was my McGill University capstone design project for the academic year 2019
 
 This project involved the use of ANSYS Fluent to model and analyze the pressure, velocity, and wall shear stress of viscous blood flow in and around the iliac bifurcation and abdominal aorta. Our group compared results from Fluent to results from medical journals that analyzed the effect of aneurysms on this region of the body. We incoporated heat transfer and pulsatile blood flow into the boundary conditions of the transient simulation to effectively model the mechanisms of actual blood flow. You can see a sample of the animations created [here](https://drive.google.com/file/d/1g600vlKsBh_z9s-iOwtEf-17UIQ9KaVV/view?usp=sharing). 
 
-
 # A Literature Review on the Biomechanical Mechanisms of Octopus Suckers 
 
 This [project](https://nikkoong.github.io/files/The-Octopus-Cometh-A-Journey-Into-the-Deep-Ong-Leite.pdf) was for a graduate class at McGill where my group perfromed research on, and wrote a literature review on the biomechanics of octopus suckers. Through it, I learned a great deal about the mechanobiology and microstructure of the different sections of an octopus sucker, their applications as bioactuators in soft robotics, the material properties of octopus suckers and tentacles, and that current sucker implementation stils falls far short of natural behavior. It's an eye-opening topic, and one that I think you'll quite enjoy.
