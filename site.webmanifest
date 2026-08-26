@@ -1,0 +1,12 @@
+{
+  "name": "Nicholas Ong — Portfolio",
+  "short_name": "Nikko Ong",
+  "description": "Portfolio desktop of Nicholas Ong",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "start_url": ".",
+  "display": "browser",
+  "background_color": "#0b0a18",
+  "theme_color": "#0b0a18"
+}
