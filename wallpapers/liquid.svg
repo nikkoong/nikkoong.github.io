@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="l-base" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14122b"/><stop offset="1" stop-color="#0a0a18"/>
+    </linearGradient>
+    <linearGradient id="l-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4da6ff"/><stop offset="1" stop-color="#1456d0"/>
+    </linearGradient>
+    <linearGradient id="l-teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3fe0c0"/><stop offset="1" stop-color="#0a9e8c"/>
+    </linearGradient>
+    <linearGradient id="l-violet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b06bff"/><stop offset="1" stop-color="#5a2ed0"/>
+    </linearGradient>
+    <linearGradient id="l-peach" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff9a5b"/><stop offset="1" stop-color="#e85a2e"/>
+    </linearGradient>
+    <linearGradient id="l-rose" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff5f9e"/><stop offset="1" stop-color="#c92bd0"/>
+    </linearGradient>
+    <filter id="l-blur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="60"/></filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#l-base)"/>
+  <g filter="url(#l-blur)" opacity=".9">
+    <path d="M-80 620 C 300 380 520 780 860 520 S 1300 300 1680 480 C 1740 500 1760 640 1760 760 L 1760 1080 L -80 1080 Z" fill="url(#l-teal)"/>
+    <path d="M-80 260 C 260 640 640 240 980 560 S 1480 820 1760 540 L 1760 1080 L -80 1080 Z" fill="url(#l-blue)" opacity=".8"/>
+    <path d="M-80 820 C 380 460 700 980 1120 640 S 1600 380 1760 640 L 1760 1080 L -80 1080 Z" fill="url(#l-violet)" opacity=".8"/>
+    <path d="M-80 60 C 420 360 820 -40 1240 260 S 1700 120 1760 200 L 1760 1080 L -80 1080 Z" fill="url(#l-rose)" opacity=".6"/>
+    <path d="M-80 1080 C 240 880 520 1120 900 920 S 1500 760 1760 900 L 1760 1080 L -80 1080 Z" fill="url(#l-peach)" opacity=".6"/>
+  </g>
+</svg>

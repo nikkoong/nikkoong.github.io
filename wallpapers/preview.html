@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wallpaper previews — pick one</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#000}
+  .slide{height:100vh;width:100vw;background-size:cover;background-position:center;position:relative}
+  .slide:nth-child(1){background-image:url('aurora.svg')}
+  .slide:nth-child(2){background-image:url('orbits.svg')}
+  .slide:nth-child(3){background-image:url('flow.svg')}
+  .slide:nth-child(4){background-image:url('liquid.svg')}
+  .slide:nth-child(5){background-image:url('planets.svg')}
+  .label{position:absolute;top:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.55);
+    border:1px solid rgba(255,255,255,.25);color:#fff;padding:8px 18px;border-radius:99px;
+    font-size:14px;font-weight:600;letter-spacing:.4px;backdrop-filter:blur(12px)}
+  .num{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;
+    background:rgba(0,0,0,.45);padding:5px 14px;border-radius:99px;letter-spacing:.3px;opacity:.85}
+  .hint{position:fixed;bottom:0;left:0;right:0;text-align:center;color:rgba(255,255,255,.5);
+    font-size:12px;padding:6px;background:rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+  <div class="slide"><span class="label">1 · Aurora</span><span class="num">soft gradient blobs</span></div>
+  <div class="slide"><span class="label">2 · Orbits</span><span class="num">glowing circles</span></div>
+  <div class="slide"><span class="label">3 · Flow</span><span class="num">flowing ribbon bands</span></div>
+  <div class="slide"><span class="label">4 · Liquid</span><span class="num">curved wave layers</span></div>
+  <div class="slide"><span class="label">5 · Planets</span><span class="num">sun &amp; planets</span></div>
+  <div class="hint">scroll down — tell me the number you want</div>
+</body>
+</html>

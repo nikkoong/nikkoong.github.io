@@ -212,11 +212,8 @@ kbd{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.92em}
 
 /* ── 3. Wallpaper ── */
 #desktop{position:fixed;inset:0;overflow:hidden}
-.wallpaper{position:absolute;inset:0;width:100%;height:100%;filter:saturate(1.06) contrast(1.02)}
-.wp-s1{stop-color:var(--wp1)}.wp-s2{stop-color:var(--wp2)}.wp-s3{stop-color:var(--wp3)}.wp-s4{stop-color:var(--wp4)}
-.rib-s1{stop-color:var(--rib-a)}.rib-s2{stop-color:var(--rib-b)}
-.haze-1{fill:var(--haze1)}.haze-2{fill:var(--haze2)}.haze-3{fill:var(--haze3)}
-.rib-line{stroke:var(--rib-c)}
+.wallpaper{position:absolute;inset:0;width:100%;height:100%;background-size:cover;background-position:center;
+  filter:saturate(1.06) contrast(1.02);transition:background-image .4s var(--ease)}
 
 /* ── 4. Menu bar + dropdowns ── */
 .menubar{
@@ -520,6 +517,40 @@ kbd{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.92em}
 .ms-pin[aria-pressed="true"]{color:var(--yellow)}
 .act-foot{flex:none;padding:8px 4px 2px;font-size:11px;color:var(--muted-2);text-align:center}
 
+/* notes app */
+.notes-body{height:var(--fh,520px);padding:0;gap:0;background:var(--win-bg)}
+.notes-content{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px 20px;
+  font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12.5px;line-height:1.7;
+  color:var(--item-text);white-space:pre-wrap;user-select:text;-webkit-user-select:text;scrollbar-width:thin;
+  cursor:text;outline:none;caret-color:var(--accent)}
+.notes-content:focus{box-shadow:inset 0 0 0 1px var(--accent-soft)}
+.notes-content::selection{background:var(--sel)}
+
+/* email popover */
+.email-pop{width:380px;max-width:94vw}
+.email-pop .pop-inner{padding:14px}
+.email-box{display:flex;align-items:center;gap:12px}
+.email-ico{flex:none;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(160deg,#ff8f6b,#d93a2f)}
+.email-ico .gi{color:#fff}
+.email-main{flex:1;min-width:0}
+.email-l{font-size:10.5px;font-weight:700;letter-spacing:.55px;text-transform:uppercase;color:var(--stat-label)}
+.email-v{font-size:14px;font-weight:600;color:var(--text);word-break:break-word;overflow-wrap:anywhere;
+  user-select:text;-webkit-user-select:text}
+#copyMsg{text-align:center;margin-top:10px;min-height:14px}
+
+/* wallpaper picker */
+.wp-pop{width:300px}
+.wp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wp-thumb{position:relative;aspect-ratio:16/10;border-radius:10px;overflow:hidden;cursor:pointer;
+  border:2px solid transparent;padding:0;background-size:cover;background-position:center;
+  transition:border-color .15s var(--ease),transform .15s var(--ease)}
+.wp-thumb:hover{transform:scale(1.04)}
+.wp-thumb.active{border-color:var(--accent)}
+.wp-thumb span{position:absolute;left:0;right:0;bottom:0;padding:10px 6px 4px;text-align:center;
+  font-size:10px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.6));
+  text-shadow:0 1px 2px rgba(0,0,0,.7)}
+
 /* substack mini feed (popover) + featured card */
 .featured{display:flex;flex-direction:column;gap:10px;padding:2px}
 .featured .eyebrow{margin:0}
@@ -540,6 +571,14 @@ kbd{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.92em}
 .fact .k{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--stat-label);font-weight:700}
 .fact .v{font-size:12.5px;margin-top:3px;color:var(--item-text);line-height:1.4}
 .about-actions{display:flex;gap:9px;margin-top:10px;justify-content:center}
+.about-email{display:flex;flex-direction:column;gap:6px;margin-top:12px;padding:12px;
+  background:var(--popover-bg);border:1px solid var(--pop-border);border-radius:12px;width:100%;
+  animation:rowIn .28s var(--ease)}
+.about-email .email-box{padding:0}
+.about-email .email-l{font-size:10.5px;font-weight:700;letter-spacing:.55px;text-transform:uppercase;color:var(--stat-label)}
+.about-email .email-v{font-size:15px;font-weight:600;color:var(--text);word-break:break-word;overflow-wrap:anywhere;
+  user-select:text;-webkit-user-select:text}
+.about-email #aboutCopyMsg{text-align:center;margin-top:2px;min-height:14px}
 
 /* ── 14. Dock ── */
 .dock{position:absolute;left:50%;bottom:9px;transform:translateX(-50%);z-index:600;
@@ -610,7 +649,7 @@ kbd{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.92em}
   .dock-div{height:34px}
   .popover{width:min(340px,94vw)}
   .feat-body{flex-direction:column}
-  .feat-side{width:auto;height:42%;border-right:0;border-bottom:1px solid var(--hair)}
+  .feat-side{width:auto;height:28%;border-right:0;border-bottom:1px solid var(--hair)}
   .stats-row{grid-template-columns:repeat(3,1fr)}
   .spark-card{grid-column:1/-1}
   .fact-grid{grid-template-columns:1fr}

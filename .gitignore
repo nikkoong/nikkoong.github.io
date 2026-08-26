@@ -1,2 +1,15 @@
+# macOS
 .DS_Store
+*.swp
+*~
+
+# local source content (not part of the published site)
 substack_articles/
+
+# logs & temp
+*.log
+*.tmp
+
+# editor
+.vscode/
+.idea/

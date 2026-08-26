@@ -22,8 +22,8 @@
   if (t) t.content = m === "light" ? "#eef0f6" : "#0b0a18";
 })();
 </script>
-<link rel="icon" type="image/svg+xml" href="favicon.svg?v=20260829">
-<link rel="apple-touch-icon" href="assets/icon.svg?v=20260829">
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=20260902">
+<link rel="apple-touch-icon" href="assets/icon.svg?v=20260902">
 <link rel="manifest" href="site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nicholas Ong">
@@ -34,7 +34,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nicholas Ong — Portfolio">
 <meta name="twitter:description" content="Group PM, AI &amp; Data Platforms @ Capital One. 5 patents, $168M value delivered, one children's book about Bessel functions.">
-<link rel="stylesheet" href="styles.css?v=20260829">
+<link rel="stylesheet" href="styles.css?v=20260902">
 </head>
 <body class="booting">
 
@@ -57,6 +57,8 @@
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.8v2.2M12 19v2.2M2.8 12h2.2M19 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.2 14.5A8.3 8.3 0 0 1 9.5 3.8a8.3 8.3 0 1 0 10.7 10.7z"/></symbol>
   <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M4 7h4.5l3.5 5 3.5 5H20M20 17v-4.5M15 4.5L17 6l-2 1.5M6 17h2.5l2-2.9"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 5.5v-1a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h1"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.7"/><path d="M4 17l4.5-4.5 3 3L16 11l4 4"/></symbol>
 
   <!-- ── gradient defs ── -->
   <linearGradient id="g-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4da0ff"/><stop offset="1" stop-color="#1d63d8"/></linearGradient>
@@ -140,35 +142,20 @@
     <rect width="64" height="64" rx="15" fill="url(#g-cyan)"/>
     <path d="M11 34h9.5l5-13 9 24 5.5-15.5 3.5 4.5H53" fill="none" stroke="#fff" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
+  <symbol id="i-app-notes" viewBox="0 0 64 64">
+    <rect width="64" height="64" rx="15" fill="url(#g-teal)"/>
+    <path d="M18 14h22a6 6 0 0 1 6 6v30H24a6 6 0 0 0-6 6V14z" fill="#fff"/>
+    <path d="M18 50V14" stroke="#0aa187" stroke-width="3.2" stroke-linecap="round"/>
+    <g stroke="#9ee0d4" stroke-width="2.6" stroke-linecap="round">
+      <path d="M27 24h12M27 31h12M27 38h12"/>
+    </g>
+  </symbol>
 </defs></svg>
 
 <main id="desktop">
 
-  <!-- wallpaper -->
-  <svg class="wallpaper" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <radialGradient id="bg" cx="62%" cy="18%" r="120%">
-        <stop class="wp-s1" offset="0%" stop-color="#1c2c58"/>
-        <stop class="wp-s2" offset="38%" stop-color="#131b38"/>
-        <stop class="wp-s3" offset="70%" stop-color="#0d1026"/>
-        <stop class="wp-s4" offset="100%" stop-color="#070512"/>
-      </radialGradient>
-      <linearGradient id="rib" x1="0" y1="0" x2="1" y2="1">
-        <stop class="rib-s1" offset="45%" stop-color="#6fb5ff" stop-opacity=".7"/>
-        <stop class="rib-s2" offset="60%" stop-color="#bcd9ff" stop-opacity=".95"/>
-      </linearGradient>
-      <filter id="soft"><feGaussianBlur stdDeviation="2.2"/></filter>
-      <filter id="haze" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="34"/></filter>
-    </defs>
-    <rect width="1600" height="1000" fill="url(#bg)"/>
-    <ellipse class="haze-1" cx="1090" cy="130" rx="520" ry="350" opacity=".34" filter="url(#haze)"/>
-    <ellipse class="haze-2" cx="270" cy="880" rx="470" ry="320" opacity=".42" filter="url(#haze)"/>
-    <ellipse class="haze-3" cx="820" cy="520" rx="380" ry="260" opacity=".38" filter="url(#haze)"/>
-    <g filter="url(#soft)" fill="none">
-      <path d="M-60 470 C 360 250 560 720 980 540 S 1500 250 1720 360" stroke="url(#rib)" stroke-width="2.4"/>
-      <path class="rib-line" d="M-60 500 C 340 300 600 760 1010 570 S 1480 300 1700 400" stroke-opacity=".2" stroke-width="1.4"/>
-    </g>
-  </svg>
+  <!-- wallpaper (swapped by the wallpaper picker) -->
+  <div class="wallpaper" id="wallpaper" aria-hidden="true"></div>
 
   <!-- menu bar -->
   <header class="menubar" id="menubar">
@@ -185,6 +172,7 @@
           <button class="menu-item" role="menuitem" data-win="skills">Skills <kbd class="mi-key">⌘4</kbd></button>
           <button class="menu-item" role="menuitem" data-win="writing">Writing <kbd class="mi-key">⌘5</kbd></button>
           <button class="menu-item" role="menuitem" data-win="activity">Feed <kbd class="mi-key">⌘6</kbd></button>
+          <button class="menu-item" role="menuitem" data-win="notes">Notes <kbd class="mi-key">⌘7</kbd></button>
         </div>
       </div>
       <div class="menu-wrap hide-sm" data-menu>
@@ -195,17 +183,17 @@
           <a class="menu-item" role="menuitem" href="https://nikkoong.substack.com/" target="_blank" rel="noopener">Substack <svg class="gi gi-r"><use href="#i-ext"/></svg></a>
           <a class="menu-item" role="menuitem" href="https://nikkoong.gumroad.com/" target="_blank" rel="noopener">Gumroad <svg class="gi gi-r"><use href="#i-ext"/></svg></a>
           <div class="menu-sep"></div>
-          <a class="menu-item" role="menuitem" href="mailto:nikko.ong.roth@gmail.com">Email me <svg class="gi gi-r"><use href="#i-ext"/></svg></a>
-          <a class="menu-item" role="menuitem" href="assets/CV.pdf" download>Download CV <kbd class="mi-key">PDF</kbd></a>
+          <button class="menu-item" role="menuitem" data-email>Email me <svg class="gi gi-r"><use href="#i-ext"/></svg></button>
+          <a class="menu-item" role="menuitem" href="assets/CV.pdf">Download CV <kbd class="mi-key">PDF</kbd></a>
         </div>
       </div>
     </div>
     <div class="mb-right">
-      <a class="status-item hide-sm" href="assets/CV.pdf" download aria-label="Download CV (PDF)" data-tip="Download CV">
-        <svg class="gi"><use href="#i-dl"/></svg>
-      </a>
       <button class="status-item" id="popTrigger" aria-haspopup="dialog" aria-expanded="false" aria-label="Writing feed panel">
         <svg class="gi gi-accent"><use href="#i-pulse"/></svg>
+      </button>
+      <button class="status-item" id="wpTrigger" aria-haspopup="dialog" aria-expanded="false" aria-label="Change wallpaper" data-tip="Wallpaper">
+        <svg class="gi"><use href="#i-image"/></svg>
       </button>
       <button class="status-item" id="appearanceToggle" aria-label="Toggle appearance" aria-pressed="false">
         <svg class="gi ap-sun" hidden><use href="#i-sun"/></svg>
@@ -224,10 +212,6 @@
     <a class="desk-icon" href="https://www.linkedin.com/in/ong-nicholas/" target="_blank" rel="noopener" title="linkedin.com/in/ong-nicholas">
       <svg viewBox="0 0 48 48"><use href="#i-linkedin48"/></svg>
       <span class="desk-label">LinkedIn</span>
-    </a>
-    <a class="desk-icon" href="mailto:nikko.ong.roth@gmail.com" title="nikko.ong.roth@gmail.com">
-      <svg viewBox="0 0 48 48"><use href="#i-email48"/></svg>
-      <span class="desk-label">Email</span>
     </a>
     <a class="desk-icon hide-sm" href="https://nikkoong.substack.com/" target="_blank" rel="noopener" title="nikkoong.substack.com">
       <svg viewBox="0 0 48 48"><use href="#i-substack48"/></svg>
@@ -262,8 +246,18 @@
         <div class="fact"><div class="k">Side quests</div><div class="v">Children's math book author</div></div>
       </div>
       <div class="about-actions">
-        <a class="btn-primary" href="assets/CV.pdf" download>Download CV</a>
-        <a class="btn-sub" href="mailto:nikko.ong.roth@gmail.com">Email me</a>
+        <button class="btn-primary" data-email-about>Email me</button>
+      </div>
+      <div class="about-email" id="aboutEmail" hidden>
+        <div class="email-box">
+          <span class="email-ico" aria-hidden="true"><svg class="gi" width="18" height="18"><use href="#i-email48"/></svg></span>
+          <div class="email-main">
+            <div class="email-l">Email me</div>
+            <div class="email-v" id="aboutEmailAddr">nikko.ong.roth@gmail.com</div>
+          </div>
+          <button class="btn-sub" id="aboutCopyEmail"><svg class="gi"><use href="#i-copy"/></svg>Copy</button>
+        </div>
+        <p class="muted tiny" id="aboutCopyMsg">Usually replies within a day or two.</p>
       </div>
     </div>
     <div class="resizer" aria-hidden="true"></div>
@@ -529,6 +523,23 @@
     <div class="resizer" aria-hidden="true"></div>
   </section>
 
+  <!-- ══ Notes ══ -->
+  <section class="window" id="win-notes" role="dialog" aria-modal="false" aria-label="Notes" hidden tabindex="-1" style="--fw:480px;--fh:520px">
+    <header class="win-titlebar" data-drag>
+      <div class="traffic">
+        <button class="tl tl-close" data-close aria-label="Close window"></button>
+        <button class="tl tl-min" data-min aria-label="Minimize window"></button>
+        <button class="tl tl-zoom" data-zoom aria-label="Zoom window"></button>
+      </div>
+      <div class="win-title">Notes</div>
+      <div class="win-spacer"></div>
+    </header>
+    <div class="win-body notes-body">
+      <div class="notes-content" id="notesContent" contenteditable="true" spellcheck="false" aria-label="Editable notes"></div>
+    </div>
+    <div class="resizer" aria-hidden="true"></div>
+  </section>
+
   <!-- ══ Menu-bar popover ══ -->
   <div class="popover" id="popPanel" role="dialog" aria-modal="false" aria-label="Career activity panel" hidden>
     <div class="pop-notch"></div>
@@ -553,6 +564,31 @@
     </div>
   </div>
 
+  <!-- ══ Email popover ══ -->
+  <div class="popover email-pop" id="emailPanel" role="dialog" aria-modal="false" aria-label="Email Nicholas Ong" hidden>
+    <div class="pop-notch"></div>
+    <div class="pop-inner">
+      <div class="email-box">
+        <span class="email-ico" aria-hidden="true"><svg class="gi" width="18" height="18"><use href="#i-email48"/></svg></span>
+        <div class="email-main">
+          <div class="email-l">Email me</div>
+          <div class="email-v" id="emailAddr">nikko.ong.roth@gmail.com</div>
+        </div>
+        <button class="btn-sub" id="copyEmail"><svg class="gi"><use href="#i-copy"/></svg>Copy</button>
+      </div>
+      <p class="muted tiny" id="copyMsg">Usually replies within a day or two.</p>
+    </div>
+  </div>
+
+  <!-- ══ Wallpaper picker ══ -->
+  <div class="popover wp-pop" id="wpPanel" role="dialog" aria-modal="false" aria-label="Choose wallpaper" hidden>
+    <div class="pop-notch"></div>
+    <div class="pop-inner">
+      <div class="email-l">Wallpaper</div>
+      <div class="wp-grid" id="wpGrid"></div>
+    </div>
+  </div>
+
   <!-- dock -->
   <nav class="dock" id="dock" aria-label="Dock">
     <ul class="dock-list">
@@ -562,10 +598,10 @@
       <li><button class="dock-item" data-win="skills" data-tip="Skills" aria-label="Skills"><svg class="dock-ic di-app"><use href="#i-app-skills"/></svg></button></li>
       <li><button class="dock-item" data-win="writing" data-tip="Writing" aria-label="Writing"><svg class="dock-ic di-app"><use href="#i-app-writing"/></svg></button></li>
       <li><button class="dock-item" data-win="activity" data-tip="Feed" aria-label="Writing feed"><svg class="dock-ic di-app"><use href="#i-app-activity"/></svg></button></li>
+      <li><button class="dock-item" data-win="notes" data-tip="Notes" aria-label="Notes"><svg class="dock-ic di-app"><use href="#i-app-notes"/></svg></button></li>
       <li class="dock-div" role="presentation"></li>
       <li><a class="dock-item" href="https://github.com/nikkoong" target="_blank" rel="noopener" data-tip="GitHub" aria-label="GitHub profile"><svg class="dock-ic di-app"><use href="#i-github48"/></svg></a></li>
       <li><a class="dock-item" href="https://www.linkedin.com/in/ong-nicholas/" target="_blank" rel="noopener" data-tip="LinkedIn" aria-label="LinkedIn profile"><svg class="dock-ic di-app"><use href="#i-linkedin48"/></svg></a></li>
-      <li><a class="dock-item" href="mailto:nikko.ong.roth@gmail.com" data-tip="Email" aria-label="Email Nicholas Ong"><svg class="dock-ic di-app"><use href="#i-email48"/></svg></a></li>
     </ul>
   </nav>
 
@@ -582,19 +618,19 @@
         <li>McGill mechanical engineering · children's book author</li>
       </ul>
       <p class="ns-links">
-        <a href="assets/CV.pdf" download>Download CV</a> ·
+        <a href="assets/CV.pdf">Download CV</a> ·
         <a href="https://github.com/nikkoong" target="_blank" rel="noopener">GitHub</a> ·
         <a href="https://www.linkedin.com/in/ong-nicholas/" target="_blank" rel="noopener">LinkedIn</a> ·
-        <a href="mailto:nikko.ong.roth@gmail.com">Email</a> ·
-        <a href="https://nikkoong.substack.com/" target="_blank" rel="noopener">Substack</a>
+        <a href="mailto:nikko.ong.roth@gmail.com">Email</a> ·        <a href="https://nikkoong.substack.com/" target="_blank" rel="noopener">Substack</a>
       </p>
     </div>
   </noscript>
 
 </main>
 
-<script src="assets/catalog.js?v=20260829"></script>
-<script src="assets/feed.js?v=20260829"></script>
-<script src="app.js?v=20260829"></script>
+<script src="assets/catalog.js?v=20260902"></script>
+<script src="assets/feed.js?v=20260902"></script>
+<script src="assets/notes.js?v=20260902"></script>
+<script src="app.js?v=20260902"></script>
 </body>
 </html>

@@ -98,6 +98,8 @@ $$(".menu-wrap [data-win]").forEach(it =>
   }));
 $$(".menu-wrap a.menu-item").forEach(a =>
   a.addEventListener("click", () => hideMenu(true)));
+$$(".menu-wrap [data-email]").forEach(b =>
+  b.addEventListener("click", () => hideMenu(true)));
 document.addEventListener("click", e => {
   if (openMenu && !e.target.closest(".menu-wrap")) hideMenu(true);
 });
@@ -182,7 +184,8 @@ function placeWindow(id){
     projects:   [vw*0.30 - w*0.20, 134],
     skills:     [vw*0.58, 152],
     writing:    [vw-w-40, 122],
-    activity:   [Math.max(14, vw*0.06), 168]
+    activity:   [Math.max(14, vw*0.06), 168],
+    notes:      [vw*0.52, 240]
   };
   const [ax, ay] = anchors[id] || [(vw-w)/2, 100];
   el.style.left = clamp(ax + cascade*18, 8, vw-w-8) + "px";
@@ -216,6 +219,7 @@ function closeWin(id){
   st.open = false; st.min = false;
   hideElement(st.el, () => syncDock());
   st.trigger?.focus?.();
+  if (id === "about") resetAboutEmail();
 }
 function toggleWin(id, trigger){
   const st = REG[id]; if (!st) return;
@@ -297,10 +301,10 @@ document.addEventListener("keydown", e => {
 });
 
 /* ⌘1…⌘6 open windows directly */
-const CMD_IDS = ["about","experience","projects","skills","writing","activity"];
+const CMD_IDS = ["about","experience","projects","skills","writing","activity","notes"];
 document.addEventListener("keydown", e => {
   if (!(e.metaKey || e.ctrlKey) || e.altKey || e.shiftKey) return;
-  const idx = "123456".indexOf(e.key);
+  const idx = "1234567".indexOf(e.key);
   if (idx === -1) return;
   if (/^(input|textarea)$/i.test(document.activeElement?.tagName || "")) return;
   e.preventDefault();
@@ -489,6 +493,133 @@ $("#resetFeed").addEventListener("click", e => {
     renderFeed();
   }, reduce ? 30 : 300);
 });
+
+/* ── notes app ── */
+const NOTES = window.NIKKO_NOTES || [];
+$("#notesContent").textContent = NOTES.join("\n");
+
+/* ── email panel (copy email instead of opening the mail app) ── */
+const emailPanel=$("#emailPanel"), emailCopyBtn=$("#copyEmail"), copyMsg=$("#copyMsg");
+const aboutEmailBox=$("#aboutEmail"), aboutCopyBtn=$("#aboutCopyEmail"), aboutCopyMsg=$("#aboutCopyMsg");
+const aboutEmailBtn = $("[data-email-about]");
+const EMAIL_TXT = "nikko.ong.roth@gmail.com";
+let emailOpen = false;
+async function copyText(text, btn, okMsg){
+  try { await navigator.clipboard.writeText(text); }
+  catch (err) {
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e2) {}
+    ta.remove();
+  }
+  flashBusy(btn);
+  if (okMsg) okMsg.textContent = "Copied — see you in your inbox!";
+}
+function positionEmail(el){
+  const r = el.getBoundingClientRect(), w = emailPanel.offsetWidth || 380;
+  const left = clamp(r.left + r.width/2 - w/2, 8, innerWidth - w - 8);
+  emailPanel.style.setProperty("--pop-left", left + "px");
+  emailPanel.style.setProperty("--notch-x", clamp(r.left + r.width/2 - left, 16, w - 16) + "px");
+}
+function openEmailPanel(trigger){
+  emailOpen = true; emailPanel.hidden = false;
+  positionEmail(trigger);
+  copyMsg.textContent = "Usually replies within a day or two.";
+  emailCopyBtn.classList.remove("copied");
+  emailCopyBtn.querySelector(".gi").setAttribute("href", "#i-copy");
+}
+function closeEmailPanel(){
+  if (!emailOpen) return;
+  emailOpen = false;
+  hideElement(emailPanel);
+}
+function resetAboutEmail(){
+  aboutEmailBtn.hidden = false;
+  aboutEmailBox.hidden = true;
+  aboutCopyMsg.textContent = "Usually replies within a day or two.";
+}
+/* floating popover trigger: Links menu */
+$$("[data-email]").forEach(b => {
+  b.addEventListener("click", e => {
+    e.preventDefault();
+    openEmailPanel(b);
+  });
+});
+/* About panel: expand inline instead of floating */
+if (aboutEmailBtn){
+  aboutEmailBtn.addEventListener("click", () => {
+    aboutEmailBtn.hidden = true;
+    aboutEmailBox.hidden = false;
+  });
+}
+aboutCopyBtn.addEventListener("click", e => {
+  copyText($("#aboutEmailAddr").textContent, e.currentTarget, aboutCopyMsg);
+});
+emailCopyBtn.addEventListener("click", e => {
+  copyText($("#emailAddr").textContent, e.currentTarget, copyMsg);
+});
+document.addEventListener("click", e => {
+  if (emailOpen && !emailPanel.contains(e.target) && !e.target.closest("[data-email]"))
+    closeEmailPanel();
+});
+addEventListener("resize", () => { if (emailOpen) positionEmail($("[data-email]")); });
+addEventListener("keydown", e => { if (e.key === "Escape" && emailOpen) closeEmailPanel(); });
+
+/* ── wallpaper picker ── */
+const WALLPAPERS = [
+  { id:"aurora",  name:"Aurora",  file:"wallpapers/aurora.svg"  },
+  { id:"orbits",  name:"Orbits",  file:"wallpapers/orbits.svg"  },
+  { id:"flow",    name:"Flow",    file:"wallpapers/flow.svg"    },
+  { id:"liquid",  name:"Liquid",  file:"wallpapers/liquid.svg"  },
+  { id:"planets", name:"Planets", file:"wallpapers/planets.svg" }
+];
+const wallpaperEl = $("#wallpaper");
+let wallpaperId = localStorage.getItem("no-wallpaper") || "liquid";
+const wpGrid = $("#wpGrid"), wpTrigger = $("#wpTrigger"), wpPanel = $("#wpPanel");
+let wpOpen = false;
+function applyWallpaper(id, persist){
+  const w = WALLPAPERS.find(x => x.id === id) || WALLPAPERS[0];
+  wallpaperId = w.id;
+  wallpaperEl.style.backgroundImage = `url("${w.file}")`;
+  if (persist){ try { localStorage.setItem("no-wallpaper", w.id); } catch {} }
+}
+function positionWp(){
+  const r = wpTrigger.getBoundingClientRect(), w = wpPanel.offsetWidth || 300;
+  const left = clamp(r.left + r.width/2 - w/2, 8, innerWidth - w - 8);
+  wpPanel.style.setProperty("--pop-left", left + "px");
+  wpPanel.style.setProperty("--notch-x", clamp(r.left + r.width/2 - left, 16, w - 16) + "px");
+}
+function openWp(){
+  wpOpen = true; wpPanel.hidden = false;
+  positionWp();
+  wpTrigger.setAttribute("aria-expanded","true");
+  wpGrid.innerHTML = WALLPAPERS.map(w => `
+    <button class="wp-thumb${w.id===wallpaperId?" active":""}" data-wp="${w.id}"
+      style="background-image:url('${w.file}')" aria-label="Set ${w.name} wallpaper">
+      <span>${w.name}</span>
+    </button>`).join("");
+  $$(".wp-thumb", wpGrid).forEach(b =>
+    b.addEventListener("click", () => {
+      applyWallpaper(b.dataset.wp, true);
+      closeWp();
+    }));
+}
+function closeWp(){
+  if (!wpOpen) return;
+  wpOpen = false;
+  wpTrigger.setAttribute("aria-expanded","false");
+  hideElement(wpPanel);
+}
+wpTrigger.addEventListener("click", e => {
+  e.stopPropagation();
+  wpOpen ? closeWp() : openWp();
+});
+document.addEventListener("click", e => {
+  if (wpOpen && !wpPanel.contains(e.target) && !wpTrigger.contains(e.target)) closeWp();
+});
+addEventListener("resize", () => { if (wpOpen) positionWp(); });
+addEventListener("keydown", e => { if (e.key === "Escape" && wpOpen) closeWp(); });
+applyWallpaper(wallpaperId);
 
 /* ── boot reveal ── */
 buildRoles();

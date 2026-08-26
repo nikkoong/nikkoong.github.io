@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="p-base" cx="50%" cy="40%" r="120%">
+      <stop offset="0" stop-color="#221a3a"/><stop offset="1" stop-color="#0a0916"/>
+    </radialGradient>
+    <radialGradient id="p-sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffe9a8"/><stop offset=".4" stop-color="#ffb86b"/><stop offset="1" stop-color="#ff6b6b"/>
+    </radialGradient>
+    <radialGradient id="p-c1" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#8fd8ff"/><stop offset="1" stop-color="#3d6dff"/>
+    </radialGradient>
+    <radialGradient id="p-c2" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffa3d8"/><stop offset="1" stop-color="#a05fff"/>
+    </radialGradient>
+    <radialGradient id="p-c3" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#a3ffe0"/><stop offset="1" stop-color="#17b897"/>
+    </radialGradient>
+    <filter id="p-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="90"/></filter>
+    <filter id="p-blur-s" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="45"/></filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#p-base)"/>
+  <g filter="url(#p-blur)" opacity=".75">
+    <circle cx="1250" cy="180" r="420" fill="url(#p-sun)"/>
+    <circle cx="180" cy="820" r="480" fill="url(#p-c1)"/>
+  </g>
+  <g filter="url(#p-blur-s)" opacity=".9">
+    <circle cx="420" cy="220" r="260" fill="url(#p-c2)"/>
+    <circle cx="1300" cy="780" r="300" fill="url(#p-c3)"/>
+  </g>
+  <g filter="url(#p-blur-s)" opacity=".7">
+    <circle cx="850" cy="520" r="160" fill="url(#p-c1)"/>
+    <circle cx="1080" cy="420" r="120" fill="url(#p-sun)"/>
+  </g>
+</svg>

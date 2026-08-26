@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="m-base" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0f22"/><stop offset="1" stop-color="#141028"/>
+    </linearGradient>
+    <linearGradient id="m-a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e054ff"/><stop offset=".5" stop-color="#5b8cff"/><stop offset="1" stop-color="#36e0c8"/>
+    </linearGradient>
+    <linearGradient id="m-b" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff8a5b"/><stop offset=".5" stop-color="#ff4f9e"/><stop offset="1" stop-color="#7a4dff"/>
+    </linearGradient>
+    <linearGradient id="m-c" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3fd8ff"/><stop offset=".5" stop-color="#4d9fff"/><stop offset="1" stop-color="#a06bff"/>
+    </linearGradient>
+    <filter id="m-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="48"/></filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#m-base)"/>
+  <g filter="url(#m-blur)" opacity=".92">
+    <path d="M-120 780 C 300 320 620 900 1000 420 S 1500 200 1760 560 L 1760 1080 L -120 1080 Z" fill="url(#m-a)"/>
+    <path d="M-120 260 C 340 720 720 180 1120 640 S 1560 880 1760 620 L 1760 1080 L -120 1080 Z" fill="url(#m-b)" opacity=".75"/>
+    <path d="M-120 940 C 420 420 760 1000 1240 480 S 1600 60 1760 300 L 1760 1080 L -120 1080 Z" fill="url(#m-c)" opacity=".8"/>
+  </g>
+</svg>
