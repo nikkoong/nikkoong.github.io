@@ -1,0 +1,206 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>How a bagpipe works: a physics explainer</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="An interactive physics explainer: reeds, air columns and drones, ending in a playable model where you squeeze the bag and tune the drones by ear.">
+<link rel="canonical" href="https://nikkoong.github.io/bagpipe-explainer.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How a bagpipe works: a physics explainer">
+<meta property="og:description" content="Scroll the mechanism, then play a working physical model: bag pressure, reeds and air columns shape what you hear.">
+<meta property="og:url" content="https://nikkoong.github.io/bagpipe-explainer.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+:root{--bg:#e9eeee;--fg:#18242a;--mut:#58686d;--card:#f8fafa;--ln:#c9d3d4;--ac:#7a3e8e;--ac2:#3b6b4c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#11171b;--fg:#e4eae9;--mut:#9aabab;--card:#1a2227;--ln:#2f3b41;--ac:#b57bcc;--ac2:#7fc29a}}
+:root[data-theme=dark]{--bg:#11171b;--fg:#e4eae9;--mut:#9aabab;--card:#1a2227;--ln:#2f3b41;--ac:#b57bcc;--ac2:#7fc29a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+main{max-width:820px;margin:0 auto;padding:8px 16px 60px}
+h1,h2,h3{font-family:Bitter,Georgia,serif;line-height:1.2}h1{font-size:2.3rem;margin:.6em 0 .3em}h2{font-size:1.4rem;margin:0 0 .5em}h3{font-size:1.05rem;margin:1.2em 0 .2em}
+section{background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:18px 20px;margin:20px 0}
+p{max-width:68ch}.n{color:var(--ac)}
+.b,.t{font:inherit;font-size:14px;border:1px solid var(--ln);background:var(--card);color:var(--fg);border-radius:18px;padding:5px 13px;margin:3px 3px 3px 0;cursor:pointer}
+.on{background:var(--ac)!important;color:#fff!important;border-color:var(--ac)!important}
+.box{background:var(--bg);border-radius:8px;padding:10px 14px;margin:10px 0}
+canvas{width:100%;height:auto;display:block;background:var(--bg);border-radius:8px}
+.r{display:grid;grid-template-columns:120px 1fr 130px;gap:8px;align-items:center;font-size:14px}.r output{text-align:right;color:var(--mut)}
+input[type=range]{width:100%;accent-color:var(--ac)}
+.w{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:5px 8px;border-bottom:1px solid var(--ln);text-align:right}td:first-child,th:first-child{text-align:left}
+svg .p{fill:var(--card);stroke:var(--fg);stroke-width:2;cursor:pointer}svg .p.sel{fill:var(--ac2)}svg{width:100%;max-width:520px;display:block;margin:auto}
+small{color:var(--mut)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:10}
+.bagp{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--card);border-bottom:1px solid var(--ln);display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:center;padding:8px 0;margin-bottom:6px}
+#bagb{background:none;border:0;padding:0;cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none}#bagb svg{width:130px;display:block;overflow:visible}#bg{transform-box:fill-box;transform-origin:center}#bg ellipse{fill:var(--ac)}
+.big{font:700 2.3rem/1.1 Bitter,Georgia,serif;color:var(--ac);background:var(--bg);display:inline-block;padding:2px 12px;border-radius:8px}
+.gz{display:flex;height:14px;border-radius:7px;overflow:hidden;position:relative;margin:8px 0 4px}.gz i{display:block;height:100%}.mk{position:absolute;top:0;width:4px;height:14px;background:var(--fg)}
+/* ---- site chrome: back to the portfolio ---- */
+html{-webkit-text-size-adjust:100%;touch-action:manipulation}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 0 2px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.brand{display:inline-flex;align-items:center;gap:9px;color:var(--fg);text-decoration:none;font-size:14px;font-weight:600}
+.brand .logo{display:grid;place-items:center;width:26px;height:26px;border-radius:7px;background:linear-gradient(150deg,#4da0ff,#1d63d8);color:#fff;font-weight:800;font-size:14px;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.back{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ln);background:var(--card);color:var(--fg);border-radius:99px;padding:7px 14px;font-size:13px;text-decoration:none}
+.back:hover{border-color:#0a84ff;color:#0a84ff}
+.foot{border-top:1px solid var(--ln);margin-top:36px;padding:16px 0 4px;text-align:center;font-size:13px;color:var(--mut)}
+.foot a{color:#0a84ff;text-decoration:none;font-weight:600}
+@media(max-width:560px){
+  h1{font-size:clamp(1.7rem,7.5vw,2.3rem)}
+  .bagp{grid-template-columns:92px 1fr;gap:10px}
+  #bagb svg{width:92px}
+  .big{font-size:1.55rem}
+  .r{grid-template-columns:1fr auto;gap:2px 10px;font-size:13px}
+  .r span{grid-column:1;grid-row:1}
+  .r output{grid-column:2;grid-row:1}
+  .r input{grid-column:1/3;grid-row:2}
+  .b,.t{padding:7px 14px}
+  section{padding:16px 14px}
+  .back{padding:7px 12px}
+}
+</style></head><body><main>
+<header class="top">
+  <a class="brand" href="/"><span class="logo" aria-hidden="true">N</span>Nikko Ong</a>
+  <a class="back" href="/">← Back to portfolio</a>
+</header>
+<h1>How a bagpipe actually works</h1>
+<p>A bag of air, four reeds and a few wooden tubes. Scroll through the mechanism, then play a working physical model at the bottom: bag pressure, reeds and air columns all shape what you hear.</p>
+<button class="b" id="go">🔊 Switch on sound</button>
+
+<section><h2><span class="n">1.</span> Music is vibrating air</h2>
+<p>Sound is a rapid back-and-forth wobble of air pressure. Something vibrates and shoves the air beside it, and that push travels outward as alternating squeezes and stretches of air at about 343 m/s. Your ear counts the wobbles.</p>
+<p><b>Pitch</b> is how many repeats happen per second (the frequency, in hertz); double the frequency and you hear one octave higher. <b>Loudness</b> is how big the pressure swings are. <b>Tone colour</b> is the shape of one repeat: any repeating shape is a stack of pure tones at f, 2f, 3f… called harmonics, and the mix decides whether it sounds mellow or reedy. A <em>note</em> is just a vibration that repeats steadily.</p>
+<p>An instrument needs three things: an energy source (the bag), something that turns that steady energy into vibration (the reed), and a resonator that chooses the frequency (the pipe). First, hear what the shape of a repeat does:</p>
+<canvas id="ct" width="800" height="140"></canvas><div data-rows="Tf"></div>
+<button class="t on" data-h="0">Pure tone</button><button class="t" data-h="1">Odd harmonics (cylinder pipe)</button><button class="t" data-h="2">All harmonics (cone pipe)</button><button class="b" id="tp">▶ Play tone</button></section>
+
+<section><h2><span class="n">2.</span> The parts</h2><p>Tap a part of the instrument.</p>
+<svg viewBox="0 0 520 330" role="img" aria-label="Bagpipe: bag, blowpipe, chanter, two tenor drones and a bass drone">
+<rect class="p" data-p="ten" x="262" y="75" width="12" height="92" rx="4"/><rect class="p" data-p="ten" x="286" y="75" width="12" height="92" rx="4"/><rect class="p" data-p="bass" x="318" y="5" width="14" height="162" rx="4"/>
+<rect class="p" data-p="chan" x="243" y="270" width="16" height="56" rx="4"/><g fill="var(--fg)"><circle cx="251" cy="282" r="2.5"/><circle cx="251" cy="292" r="2.5"/><circle cx="251" cy="302" r="2.5"/><circle cx="251" cy="312" r="2.5"/></g>
+<rect class="p" data-p="blow" x="0" y="0" width="14" height="100" rx="7" transform="translate(100 95) rotate(-28)"/>
+<g fill="transparent"><rect data-p="ten" x="246" y="65" width="56" height="130" rx="10"/><rect data-p="bass" x="303" y="0" width="52" height="178" rx="10"/><rect data-p="chan" x="221" y="262" width="60" height="72" rx="10"/><rect data-p="blow" transform="translate(100 95) rotate(-28)" x="-14" y="-14" width="42" height="128" rx="12"/></g>
+<ellipse class="p" data-p="bag" cx="250" cy="215" rx="120" ry="62"/></svg>
+<div class="box" id="info">Each of the four pipes has its own reed. The bag feeds all of them from one shared supply of air.</div></section>
+
+<section><h2><span class="n">3.</span> What a reed does</h2>
+<p>A reed is a thin, springy blade of cane. Like a ruler pinned to a desk it has stiffness and mass, so on its own it bounces at a natural rate. In a bagpipe it sits in a stream of air from the bag:</p>
+<ol><li>Air pushed by the bag rushes through the narrow gap between the reed and its seat.</li><li>The bag’s pressure outside the reed is higher than the pressure inside the pipe. That difference, helped by the low pressure of fast-moving air in the gap (Bernoulli), presses the blade toward its seat, so the reed is blown shut.</li><li>Once shut, the flow stops, the suction disappears, and the cane’s springiness flings it open again.</li><li>Air rushes through, and the cycle repeats hundreds of times a second.</li></ol>
+<p>Each opening lets a puff of air into the pipe, so the reed turns a steady push into a train of pressure pulses. It is a valve, not a string. The drones use a single cane tongue cut into a small tube, which it closes against; the chanter’s double reed has two blades that close against each other. A train of sharp puffs contains many harmonics, and the pipe reinforces only the ones that match its resonances. The pipe’s returning echoes also tell the reed when to open, so the air column, not the reed, sets the pitch. Push harder and the reed stays shut for longer, so the puffs sharpen and the tone brightens.</p>
+<canvas id="cd" width="800" height="190"></canvas></section>
+
+<section><h2><span class="n">4.</span> The bag and the reed: a pressure valve</h2>
+<p>The piper’s arm squeezes the bag to hold a steady pressure of a few kilopascals (typically 2–4 kPa, a few percent of an atmosphere). A flap valve in the blowpipe lets breath in but not out, so the bag is a reservoir and the sound doesn’t stop when the piper breathes.</p>
+<p>Pressure across the reed pushes it shut, so the flow through it follows <b>U ∝ (1 − Δp/p<sub>c</sub>)·√Δp</b>, where p<sub>c</sub> is the pressure that slams it closed (a harder reed has a higher p<sub>c</sub> and needs more squeeze). Between p<sub>c</sub>/3 and p<sub>c</sub>, more pressure gives <em>less</em> flow. This “negative resistance” lets the reed pump energy into the air column instead of just leaking it.</p>
+<canvas id="cr" width="800" height="200"></canvas><div data-rows="P,pc"></div><p id="rs"></p>
+<p>The feedback loop: the reed opens and a pressure pulse runs down the tube. At the open end it reflects upside down, returning as suction after 2L/c; that suction raises the pressure drop across the reed and pulls it shut. The shut reed launches a low-pressure pulse of its own, which returns after another 2L/c as raised pressure and lets the reed spring open again. One cycle takes two round trips, so the period is 4L/c and f = c/4L.</p></section>
+
+<section><h2><span class="n">5.</span> The air column: a quarter-wave resonator</h2>
+<p>The reed end is closed (pressure swings most there) and the far end is open (pressure stays at atmospheric). The simplest standing wave that fits has a length of one quarter wavelength, so <b>λ = 4L</b> and <b>f = v/λ</b>, with v ≈ 331.3 + 0.606·T m/s. The chanter’s finger holes work by shortening L: lift a finger and the air column ends at that hole.</p>
+<canvas id="cw" width="800" height="170"></canvas><p id="wt"></p>
+<div data-rows="Ld,T"></div><button class="t" data-v="4">Play this pipe</button>
+<div class="w"><table><thead><tr><th>Pipe</th><th>Effective L (m)</th><th>λ = 4L (m)</th><th>f = v/λ (Hz)</th></tr></thead><tbody id="tb"></tbody></table></div>
+<p><small>Low A near 476 Hz is sharper than concert A (440 Hz): bagpipe pitch has crept upward over the years.</small></p>
+<p><small>L is an <em>effective</em> acoustic length, not a ruler measurement. The air just beyond an open end moves too (an “end correction” of roughly 0.6 × the bore radius), and the reed adds a little volume. The chanter is really a cone, which acts like a pipe open at both ends, so f = v/2L<sub>cone</sub>: 476 Hz matches a cone of about 0.36 m, twice the quarter-wave length used here. Breath warms and moistens the air inside the pipes, raising v, which is why pipes go sharp as they warm up and pipers tune after warming up.</small></p></section>
+
+<section><h2><span class="n">6.</span> Overblowing: jumping to a higher resonance</h2>
+<p>A pipe has more than one resonance. The same tube also holds standing waves with extra wiggles: a cylinder closed at the reed end resonates at f, 3f, 5f…, while a cone (the chanter) resonates at f, 2f, 3f…. Normally the lowest wins. Squeeze too hard and the reed snaps shut for a larger part of each cycle, its puffs get sharper, and a higher resonance starts to out-compete the lowest. The note jumps: up an octave on the chanter, up a twelfth on a cylindrical drone. Pipers call it crowing or squealing. In real piping the break is rarely this clean: a chanter pushed too hard first goes sharp and harsh, then crows or cuts out, and drone reeds shriek or choke. The model idealizes it as a clean jump.</p>
+<div class="w"><table><thead><tr><th>Bore</th><th>Resonances</th><th>Overblows to</th></tr></thead><tbody><tr><td>Cylinder (drone)</td><td>f, 3f, 5f…</td><td>×3, a twelfth</td></tr><tr><td>Cone (chanter)</td><td>f, 2f, 3f…</td><td>×2, an octave</td></tr></tbody></table></div>
+<p>In the model, the chanter overblows above about 72% of p<sub>c</sub> and the drones above about 82%. Each falls back to its normal note only after pressure drops a little lower (hysteresis, as in woodwind register changes). The pressure gauge in section 8 shows the zones.</p></section>
+
+<section><h2><span class="n">7.</span> Drones, octaves and beats</h2>
+<p>The Highland scale is built on A, so the drones sound its tonic. The tenor drones are twice the chanter’s effective length, so they play the same A an octave down; the bass is twice as long again. When the pitches are exact multiples, the harmonics of every pipe line up and the sound locks together.</p>
+<p>If two frequencies differ slightly, their sum is a tone whose loudness swells and fades |f₁ − f₂| times a second: the “wah-wah” of beats. Piping tuning is listening to that wobble slow down until it disappears. One millimetre of slide on a 0.36 m tenor is about 4.8 cents, roughly 0.66 beats per second. Pipers tune the tenors to the chanter’s low A first, then the bass to the tenors, always at steady playing pressure, because every reed’s pitch rises a little as pressure rises.</p></section>
+
+<section><h2><span class="n">8.</span> Play the model</h2>
+<p>Turn on pipes, squeeze the bag, detune the drones and bring them back to a still, beatless chord.</p>
+<div class="bagp"><button id="bagb" aria-label="Squeeze the bag (press and hold)"><svg viewBox="0 0 130 90"><g id="bg"><ellipse cx="65" cy="50" rx="58" ry="34"/><text x="65" y="55" text-anchor="middle" fill="#fff" font-size="14">squeeze</text></g></svg></button>
+<div><span class="big" id="pv"></span><small> pressure in the bag</small><div class="gz" id="gz"><i></i><i></i><i></i><i></i><i></i><b class="mk" id="mk"></b></div><small id="zs"></small></div></div>
+<button class="t on" data-bm="0">Automatic arm</button><button class="t" data-bm="1">Squeeze by hand</button> <small id="bmt"></small>
+<h3>Bag and reed</h3><div data-rows="P,pc,T"></div>
+<h3>Chanter</h3><button class="t" data-v="0">Chanter on</button><div id="notes"></div><div data-rows="Lc"></div>
+<h3>Drones</h3><button class="t" data-v="1">Tenor 1</button><button class="t" data-v="2">Tenor 2</button><button class="t" data-v="3">Bass</button><button class="b" id="tune">Reset to nominal tuning</button>
+<div data-rows="o0,o1,o2"></div><div class="box" id="bt"></div>
+<canvas id="sc" width="800" height="170"></canvas>
+<button class="t on" data-m="0">Waveform</button><button class="t" data-m="1">Spectrum</button><button class="t" data-m="2">Loudness over 5 s (beats)</button>
+<div data-rows="vol"></div>
+<h3>What the model does</h3>
+<p><small>Each pipe is a digital waveguide: a delay line sized so the round trip takes 4L/c (the air column), a one-pole filter for wall and radiation losses, and a nonlinear reed reflection function whose threshold is p<sub>c</sub>/3 and which shuts at p<sub>c</sub>. Bag pressure is the reed’s driving pressure. Simplifications: the real chanter has a conical bore and a double reed, and real drones aren’t perfect cylinders, so a waveshaper adds the even harmonics; hole positions are replaced by an effective-length ratio of the Highland scale; pitch drifts with pressure by illustrative amounts (about +10 cents per kPa on the chanter and +4 on the drones, exact at 60% of p<sub>c</sub>); scale ratios are approximate near-just Highland values, not equal temperament. Overblowing is a switch to the pipe’s next resonance (×2 chanter, ×3 drones) above a pressure threshold, with hysteresis.</small></p></section>
+
+<footer class="foot"><a href="/">← Back to nikkoong.github.io</a></footer>
+</main>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],cl=(x,a,b)=>Math.min(b,Math.max(a,x)),col=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const S={T:20,P:1.8,Pb:1.8,pc:3,Lc:180,Ld:180,o0:4,o1:-3,o2:8,vol:.7,note:1,hand:0,h:0,Tf:220,on:[0,0,0,0,0],mode:0};
+const R=[.883,1,1.125,1.25,1.333,1.5,1.667,1.767,2],NN=['Low G','Low A','B','C♯','D','E','F♯','High G','High A'];
+const vs=()=>331.3+.606*S.T;
+const KP=[10,4,4,4,0],F=()=>{const c=vs(),b=[c/(4e-3*S.Lc)*R[S.note],c/(4*(.36+S.o0/1e3)),c/(4*(.36+S.o1/1e3)),c/(4*(.72+S.o2/1e3)),c/(4e-3*S.Ld)];return b.map((x,k)=>x*Math.pow(2,KP[k]*(S.Pb-.6*S.pc)/1200))};
+const SP={P:['Squeeze strength',.5,6,.1],pc:['Reed closes at',2,5,.1],T:['Air temperature',-5,35,1],Ld:['Pipe length',100,800,1],Lc:['Chanter length',170,190,.1],o0:['Tenor 1 slide',-15,15,.1],o1:['Tenor 2 slide',-15,15,.1],o2:['Bass slide',-15,15,.1],vol:['Volume',0,1,.01],Tf:['Frequency',110,880,1]};
+const sg=v=>(v>0?'+':'')+v.toFixed(1)+' mm';
+const FM={P:v=>v.toFixed(1)+' kPa',pc:v=>v.toFixed(1)+' kPa',T:v=>v+' °C',Ld:v=>v+' mm, '+F()[4].toFixed(0)+' Hz',Lc:v=>F()[0].toFixed(1)+' Hz',o0:v=>sg(v)+', '+F()[1].toFixed(1)+' Hz',o1:v=>sg(v)+', '+F()[2].toFixed(1)+' Hz',o2:v=>sg(v)+', '+F()[3].toFixed(1)+' Hz',vol:v=>Math.round(v*100)+'%',Tf:v=>v+' Hz'};
+$$('[data-rows]').forEach(d=>d.innerHTML=d.dataset.rows.split(',').map(k=>`<div class="r"><span>${SP[k][0]}</span><input type="range" data-k="${k}" min="${SP[k][1]}" max="${SP[k][2]}" step="${SP[k][3]}"><output data-o="${k}"></output></div>`).join(''));
+$('#notes').innerHTML=NN.map((n,i)=>`<button class="t" data-n="${i}">${n}</button>`).join('');
+const I={bag:'The bag: an airtight reservoir held at a few kPa (a few percent of an atmosphere) by the piper’s arm. It stores air so the pipes keep sounding while the piper breathes in.',blow:'The blowpipe: breath goes in here. A flap valve shuts when you stop blowing, so the bag can’t drain back out.',chan:'The chanter: the melody pipe, with a double reed in a conical bore, seven finger holes in front and a thumb hole behind. With every hole covered it plays low G; lifting the bottom finger gives low A. Each lifted finger shortens the vibrating air column, so the pitch rises. In the quarter-wave picture low A has an effective L ≈ 0.18 m, giving ≈ 476 Hz.',ten:'Tenor drones: two identical single-reed pipes, each about 0.36 m (twice the chanter’s effective length), so ≈ 238 Hz: the same A, one octave below low A. Sliding the top joint changes L to tune them.',bass:'The bass drone: twice the tenor length (≈ 0.72 m, ≈ 119 Hz), another octave down. Drones hold one steady note that the melody is heard against.'};
+function tab(){const c=vs();$('#tb').innerHTML=[['Chanter, low A',.18],['Tenor drone',.36],['Bass drone',.72]].map(([n,L])=>`<tr><td>${n}</td><td>${L}</td><td>${4*L}</td><td>${(c/(4*L)).toFixed(0)}</td></tr>`).join('')}
+function ui(){$$('input[data-k]').forEach(i=>i.value=S[i.dataset.k]);$$('output').forEach(o=>o.textContent=FM[o.dataset.o](S[o.dataset.o]));tab()}
+function bs(){$$('[data-v]').forEach(b=>b.classList.toggle('on',!!S.on[b.dataset.v]));$$('[data-n]').forEach(b=>b.classList.toggle('on',+b.dataset.n==S.note&&!!S.on[0]));$$('[data-m]').forEach(b=>b.classList.toggle('on',+b.dataset.m==S.mode));$$('[data-bm]').forEach(b=>b.classList.toggle('on',+b.dataset.bm==S.hand));$$('[data-h]').forEach(b=>b.classList.toggle('on',+b.dataset.h==S.h));$('#bmt').textContent=S.hand?'Press and hold the bag to build pressure; it leaks away through the reeds when you let go.':'An arm squeezes steadily at the pressure set by the slider.'}
+document.addEventListener('input',e=>{const k=e.target.dataset.k;if(!k)return;S[k]=+e.target.value;if(k=='Tf')tn();ui()});
+
+document.addEventListener('click',e=>{const p=e.target.closest('[data-p]');if(p){$$('[data-p]').forEach(x=>x.classList.toggle('sel',x.dataset.p==p.dataset.p));$('#info').textContent=I[p.dataset.p];return}
+ const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+ if(b.id=='go'){A();b.textContent='🔊 Sound is on: start a pipe in section 8'}
+ if(d.v!=null){A();S.on[d.v]^=1}if(d.n!=null){A();S.note=+d.n;S.on[0]=1}if(d.m!=null)S.mode=+d.m;
+ if(d.bm!=null){S.hand=+d.bm;S.Pb=S.hand?0:S.P}if(d.h!=null){S.h=+d.h;tn()}if(b.id=='tp')tn(1);if(b.id=='tune'){S.o0=S.o1=S.o2=0;S.Lc=180;ui()}bs()});
+/* ---- audio: one reed-driven waveguide per pipe ---- */
+let ac,nd,an,V=[];const M=2047,DA=[.15,.25,.25,.3,.25],SH=[.5,.35,.35,.35,.35],G=[.3,.22,.22,.26,.24];
+function A(){if(!ac){ac=new(window.AudioContext||window.webkitAudioContext)();V=[0,1,2,3,4].map(()=>({b:new Float32Array(2048),w:0,y:0,f:300,ft:300,e:0,t:0,x:0,d:0,ov:0,m:1}));nd=ac.createScriptProcessor(2048,1,1);nd.onaudioprocess=proc;an=ac.createAnalyser();an.fftSize=4096;nd.connect(an);an.connect(ac.destination)}ac.resume()}
+function bt(){const p=S.Pb,c=S.pc;if(p<c/3)return 0;return(.62+.38*(p-c/3)/(2*c/3))*cl((1.08*c-p)/(.08*c),0,1)}
+function proc(ev){const o=ev.outputBuffer.getChannelData(0),n=o.length,fs=ac.sampleRate,f=F(),t=bt(),sl=-(.18+.04*S.pc);o.fill(0);
+ V.forEach((v,k)=>{const r=S.Pb/S.pc;if(!v.ov&&r>OB[k])v.ov=1;else if(v.ov&&r<OB[k]-.08)v.ov=0;const m=v.ov?(k?3:2):1;v.t=S.on[k]?t:0;v.ft=f[k]*m;if(v.e<1e-4&&!v.t){v.b.fill(0);v.m=m;return}if(v.e<1e-3||m!=v.m)v.f=v.ft;v.m=m;v.f+=(v.ft-v.f)*.4;
+  const a=DA[k],s=sl*(k?1:1.25),w=6.2832*v.f/fs,tau=Math.atan2(a*Math.sin(w),1-a*Math.cos(w))/w,D=fs/(2*v.f)-tau;
+  for(let i=0;i<n;i++){v.e+=(v.t-v.e)*4e-4;const br=v.e*(1+(Math.random()-.5)*.01),rp=v.w-D,i0=Math.floor(rp),fr=rp-i0,x0=v.b[i0&M],x1=v.b[(i0+1)&M],out=x0+(x1-x0)*fr;
+   v.y=(1-a)*out+a*v.y;const dp=-.95*v.y-br;let r=.7+s*dp;r=r>1?1:r<-1?-1:r;v.b[v.w]=br+dp*r;v.w=(v.w+1)&M;
+   const q=out+SH[k]*out*out,z=q-v.x+.995*v.d;v.x=q;v.d=z;o[i]+=z*G[k]}});
+ for(let i=0;i<n;i++)o[i]=Math.tanh(o[i]*S.vol*1.6)}
+/* ---- drawing ---- */
+function dReed(){const c=$('#cr'),g=c.getContext('2d'),W=800,H=200,pc=S.pc,X=p=>50+p/6*(W-70),Y=u=>H-34-u/.4*(H-56);g.clearRect(0,0,W,H);
+ g.strokeStyle=col('--mut');g.fillStyle=col('--mut');g.font='22px sans-serif';g.lineWidth=1;g.beginPath();g.moveTo(50,H-34);g.lineTo(W-8,H-34);g.moveTo(50,8);g.lineTo(50,H-34);g.stroke();
+ g.fillText('pressure across the reed (kPa)',W-340,H-8);g.fillText('flow',4,22);
+ g.strokeStyle=col('--ac2');g.lineWidth=4;g.beginPath();for(let p=0;p<=pc;p+=.02){const r=p/pc,u=(1-r)*Math.sqrt(r);p?g.lineTo(X(p),Y(u)):g.moveTo(X(p),Y(u))}g.stroke();
+ g.setLineDash([5,5]);g.lineWidth=1;g.strokeStyle=col('--mut');g.fillStyle=col('--mut');[pc/3,pc].forEach((p,i)=>{g.beginPath();g.moveTo(X(p),30);g.lineTo(X(p),H-34);g.stroke();g.fillText(i?'pc: shut':'pc/3',X(p)+5,26)});g.setLineDash([]);
+ const r=cl(S.Pb/pc,0,1);g.fillStyle=col('--ac');g.beginPath();g.arc(X(S.Pb),Y(S.Pb<pc?(1-r)*Math.sqrt(r):0),9,0,7);g.fill();
+ $('#rs').textContent=ZN[zone()]}
+function dWave(t){const c=$('#cw'),g=c.getContext('2d'),W=800,H=170,L=S.Ld,x0=70,len=(W-110)*L/800,m=H/2+4,ph=Math.cos(t/1e3*2.6);g.clearRect(0,0,W,H);
+ g.strokeStyle=col('--fg');g.lineWidth=3;g.strokeRect(x0,m-30,len,60);g.fillStyle=col('--ac');g.fillRect(x0-8,m-30,8,60);
+ g.fillStyle=col('--mut');g.font='20px sans-serif';g.fillText('reed (closed end)',6,20);g.fillText('open end',Math.min(x0+len-40,W-100),H-6);
+ [1,0].forEach(e=>{g.beginPath();g.strokeStyle=e?col('--mut'):col('--ac');g.lineWidth=e?1:4;g.setLineDash(e?[4,4]:[]);for(let i=0;i<=100;i++){const A=Math.cos(Math.PI/2*i/100)*(e?1:ph),y=m-A*52;i?g.lineTo(x0+len*i/100,y):g.moveTo(x0,y)}g.stroke()});g.setLineDash([]);
+ $('#wt').textContent='L = '+L+' mm, so λ = 4L = '+(4*L/1e3).toFixed(2)+' m and f = '+vs().toFixed(0)+' / '+(4*L/1e3).toFixed(2)+' = '+F()[4].toFixed(0)+' Hz. The curve is the pressure along the pipe.'}
+const td=new Float32Array(1024),fd=new Uint8Array(2048),H2=[];
+function dScope(){const c=$('#sc'),g=c.getContext('2d'),W=800,H=170;g.clearRect(0,0,W,H);if(!an){g.fillStyle=col('--mut');g.font='24px sans-serif';g.fillText('Switch on sound, then start a pipe',20,H/2);return}
+ an.getFloatTimeDomainData(td);g.strokeStyle=g.fillStyle=col('--ac2');g.lineWidth=2;
+ if(S.mode==0){g.beginPath();td.forEach((v,i)=>g.lineTo(i/1024*W,H/2-v*H*.45));g.stroke()}
+ else if(S.mode==1){an.getByteFrequencyData(fd);const nb=Math.floor(3000/(ac.sampleRate/an.fftSize));for(let i=0;i<nb;i++){const h=fd[i]/255*H;g.fillRect(i/nb*W,H-h,W/nb,h)}}
+ else{let m=0;td.forEach(v=>m=Math.max(m,Math.abs(v)));H2.push(m);if(H2.length>300)H2.shift();g.beginPath();H2.forEach((v,i)=>g.lineTo(i/300*W,H-8-v*H*.9));g.stroke()}}
+function dBeat(){const f=F(),o=[],q=(n,b)=>o.push(n+': '+(b<.05?'in tune, no beats':b.toFixed(2)+' beats per second'));
+ if(S.on[1]&&S.on[2])q('Tenor 1 against tenor 2',Math.abs(f[1]-f[2]));if(S.on[3]&&S.on[1])q('Bass 2nd harmonic against tenor 1',Math.abs(f[1]-2*f[3]));
+ if(S.on[0]&&S.note==1&&S.on[1])q('Chanter low A against tenor 1 2nd harmonic',Math.abs(f[0]-2*f[1]));
+ $('#bt').innerHTML=V.some((v,k)=>v.ov&&S.on[k])?'A pipe is overblown, so it has jumped away from the tuned pitches. Ease off the pressure.':o.length?o.join('<br>'):'Start two drones, or the chanter on low A with a tenor, to see the beat rates.'}
+const OB=[.72,.82,.82,.82,.82],ZN=['Silent: pressure is below one third of the closing pressure, so the reed never gets going.','Singing: every reed is in its normal register.','The chanter is overblowing and has jumped up an octave.','The chanter and the drones are all overblowing.','Choked: above the closing pressure the reed is slammed shut.'],ZC=['--ln','--ac2','#d9a03a','#c4572e','--mut'];
+const ovs=k=>V[k]?V[k].ov:S.Pb/S.pc>OB[k],zone=()=>{const r=S.Pb/S.pc;return r<1/3?0:r>1?4:ovs(1)?3:ovs(0)?2:1};
+let Q=0,held=0,till=0,TO;const bb=$('#bagb'),sqz=()=>S.hand&&(held||performance.now()<till),HA=[[0,1],[0,1,0,1/3,0,1/5,0,1/7],[0,1,1/2,1/3,1/4,1/5,1/6,1/7,1/8]];
+const hold=()=>{held=1;till=performance.now()+450};bb.addEventListener('pointerdown',e=>{e.preventDefault();hold()});['pointerup','pointerleave','pointercancel'].forEach(n=>bb.addEventListener(n,()=>held=0));
+bb.addEventListener('keydown',e=>{if(e.key==' '||e.key=='Enter'){e.preventDefault();if(!held)hold()}});bb.addEventListener('keyup',()=>held=0);
+function dBag(dt){const c=S.pc,w=[c/3,(OB[0]-1/3)*c,(OB[1]-OB[0])*c,(1-OB[1])*c,Math.max(0,6-c)];
+ $$('#gz i').forEach((e,i)=>{e.style.width=w[i]/6*100+'%';e.style.background=ZC[i][0]=='-'?col(ZC[i]):ZC[i]});
+ $('#mk').style.left='calc('+cl(S.Pb/6,0,1)*100+'% - 2px)';$('#pv').textContent=S.Pb.toFixed(2)+' kPa';$('#zs').textContent=ZN[zone()];
+ Q+=((S.hand?(sqz()?1:0):.9*cl(S.P/4.5,0,1))-Q)*Math.min(1,dt*12);$('#bg').style.transform='scale('+(1-.16*Q)+','+(1-.34*Q)+')';$('#bg ellipse').style.fillOpacity=.45+.5*cl(S.Pb/5,0,1)}
+function tn(tg){if(tg){if(TO){TO.stop();TO=0}else{A();TO=ac.createOscillator();const g=ac.createGain();g.gain.value=.12;TO.connect(g);g.connect(ac.destination);TO.start()}}
+ if(TO){const im=Float32Array.from(HA[S.h]);TO.setPeriodicWave(ac.createPeriodicWave(new Float32Array(im.length),im));TO.frequency.value=S.Tf}$('#tp').textContent=TO?'■ Stop tone':'▶ Play tone'}
+function dTone(){const g=$('#ct').getContext('2d'),W=800,H=140,h=HA[S.h],y=x=>{let s=0;h.forEach((a,n)=>s+=a*Math.sin(n*x));return s};let mx=0;g.clearRect(0,0,W,H);
+ for(let i=0;i<=W;i++)mx=Math.max(mx,Math.abs(y(i/W*6*Math.PI)));g.strokeStyle=col('--ac');g.lineWidth=3;g.beginPath();for(let i=0;i<=W;i++)g.lineTo(i,H/2-y(i/W*6*Math.PI)/mx*H*.4);g.stroke();
+ g.fillStyle=col('--mut');g.font='20px sans-serif';g.fillText('3 repeats shown: each lasts '+(1000/S.Tf).toFixed(1)+' ms ('+S.Tf+' Hz)',8,22)}
+function dRA(t){const g=$('#cd').getContext('2d'),W=800,H=190,r=S.Pb/S.pc,A=r<1/3||r>1?0:cl((r-.3)*3.4,0,1.8),g0=r>1?0:.5,m=H-34,Y=v=>m-v*(m-34)/1.6,gp=x=>g0+A*Math.cos(x/W*6*Math.PI-t/1e3*3);g.clearRect(0,0,W,H);
+ g.strokeStyle=col('--mut');g.lineWidth=1;g.beginPath();g.moveTo(0,m);g.lineTo(W,m);g.stroke();g.fillStyle=col('--mut');g.font='20px sans-serif';g.fillText('closed',6,m+22);g.fillText('Reed position (dashed) and the air flow it lets through (solid)',6,22);
+ g.setLineDash([6,6]);g.lineWidth=2;g.beginPath();for(let x=0;x<=W;x+=4)g.lineTo(x,Y(Math.max(gp(x),-.12)));g.stroke();g.setLineDash([]);
+ g.strokeStyle=g.fillStyle=col('--ac');g.lineWidth=4;g.beginPath();for(let x=0;x<=W;x+=4)g.lineTo(x,Y(Math.max(0,gp(x))));g.stroke();g.globalAlpha=.15;g.lineTo(W,m);g.lineTo(0,m);g.fill();g.globalAlpha=1}
+let lu=0,t0=performance.now();
+function draw(t){const dt=(t-t0)/1e3;t0=t;
+ if(S.hand){const n=V.filter(v=>v.t>.01).length;if(sqz())S.Pb+=(S.P-S.Pb)*Math.min(1,dt*7);else S.Pb=Math.max(0,S.Pb*(1-Math.min(.5,dt*(.03+.05*n))))}else S.Pb=S.P;
+ if(t-lu>250){lu=t;$$('output').forEach(o=>o.textContent=FM[o.dataset.o](S[o.dataset.o]))}dBag(Math.min(dt,.1));dTone();dRA(t);dReed();dWave(t);dScope();dBeat();requestAnimationFrame(draw)}
+ui();bs();requestAnimationFrame(draw);
+</script></body></html>
