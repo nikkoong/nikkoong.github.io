@@ -13,17 +13,18 @@ window.NIKKO_PORTFOLIO_CATALOG = {
               title: "Group Product Manager, AI & Data Platforms",
               company: "Capital One",
               period: "Jan 2025 – Present",
-              energy: "$168M value delivered",
+              energy: "18K+ engineers · autonomous coding agents",
               badge: "Current",
               symbol: "\u{1F916}",
               logo: "assets/c1.png",
               tint: "history",
-              summary: "Leading 0-to-1 agentic AI and data platforms for the largest US credit issuer.",
+              summary: "Building autonomous coding agents and AI-native data infrastructure for 18K+ software engineers at the largest credit card issuer in the U.S.",
               notes: [
-                "Drove *$168M* in measured business value across 18K engineers & analysts with 0-to-1 strategy for an agentic AI platform that autonomously rewrites legacy code and analytical workflows.",
-                "Defined the model-evaluation framework and self-improvement system for multi-agent orchestration at enterprise scale.",
-                "Led technical data-migration strategy for the largest financial-services data migration on record - *1.2 exabytes* across 45,000 datasets, architecting the first ever cloud-native financial core at a major US bank.",
-                "Built and led a *30-person* product, engineering & ML org; adoption of AI tooling saved *820K engineering hours* within 3 months of launch."
+                "Building *autonomous coding agents* for *18K+ software engineers*, including agent memory and the agentic developer experiences around them.",
+                "Developed *AI-native data infrastructure* that enables autonomous analytical workflows, leading a *1.2 exabyte* migration across tens of thousands of datasets into AI-ready cloud storage.",
+                "Designed and scaled *event-driven streaming platforms* powering the largest credit card issuer in the U.S.",
+                "Focused on AI-ready cloud data infrastructure: *Kafka* streaming architecture, *Snowflake + Databricks* lakehouse patterns, and data governance & observability.",
+                "Built and led a cross-functional product, engineering, and ML org; adoption of the AI tooling saved *820K engineering hours* within three months of launch."
               ]
             }
           ]
@@ -37,15 +38,15 @@ window.NIKKO_PORTFOLIO_CATALOG = {
               title: "Senior Product Manager, Unstructured Data",
               company: "Docugami \u00B7 Document AI",
               period: "Jun 2022 – Jan 2025",
-              energy: "$500K \u2192 $3.5M booked revenue",
+              energy: "Unstructured documents → knowledge graphs",
               symbol: "\u{1F578}\uFE0F",
               logo: "assets/docugami.png",
               tint: "snip",
-              summary: "B2B AI Product for turning complex financial documents into queryable knowledge graphs.",
+              summary: "Training vision-language models to turn long-form, unstructured business documents into semantically-informed knowledge graphs.",
               notes: [
-                "Grew booked revenue from *$500K to $3.5M* across 6 Fortune 100 accounts.",
-                "Spearheaded 0-to-1 launch of a self-service B2B platform for building and deploying agentic document workflows, reaching *71% adoption* among leading US commercial insurance brokers.",
-                "Improved document-parsing accuracy *37% over GPT-4o (2024) benchmarks* by defining evaluation criteria and directing fine-tuning of open multimodal reasoning models."
+                "Trained *vision-language models* to generate semantically-informed *knowledge graphs* from long-form, unstructured business documents.",
+                "Built *LLM-based knowledge extraction* capabilities that pull valuable business insights out of paragraphs and into structured databases.",
+                "Shipped across a production B2B SaaS stack spanning *ONNX, TensorRT, Redis, and LangChain*."
               ]
             },
             {
@@ -53,15 +54,14 @@ window.NIKKO_PORTFOLIO_CATALOG = {
               title: "Product Manager, Simulation & Robotics",
               company: "Haply Robotics",
               period: "Jan 2020 – Jun 2022",
-              energy: "$2.2M ARR \u00B7 Inverse3",
+              energy: "Haptic robotics · patented",
               symbol: "\u{1F9BE}",
               logo: "assets/haply.png",
               tint: "shelf",
-              summary: "Haptic robotics for surgical VR training and spatial computing.",
+              summary: "Bringing human touch to the virtual world through haptic robotic interfaces for surgical simulation and manual-skills training.",
               notes: [
-                "Designed and launched the *Inverse3*, a haptic robotics device enabling tactile VR/AR training, generating *$2.2M ARR* across surgical use cases (MIS, Orthopedic & Dental).",
-                "Partnered with the CEO to raise a *$5M* deep-tech seed round while managing a 10-person product & ops team through 0-to-1 hardware and software development.",
-                "Shipped a developer-friendly SDK/API that drove *16× adoption growth* among ecosystems building surgical-simulation content."
+                "Partnered with developers, researchers, and customers to design *intuitive human-computer experiences* and medical robotics systems for surgical simulation and manual-skills training.",
+                "Awarded a *patent* for haptic robotics for AR/VR."
               ]
             }
           ]
@@ -75,44 +75,45 @@ window.NIKKO_PORTFOLIO_CATALOG = {
               title: "Mechanical Engineering Researcher",
               company: "McGill University",
               period: "2020 – 2021",
-              energy: "Engineering Research",
+              energy: "Vibration mechanics research",
               symbol: "\u{1F393}",
               logo: "assets/mcgill.png",
               tint: "dl",
-              summary: "Graduate research in vibration mechanics and dynamic vibration absorbers.",
+              summary: "Advanced research in vibration mechanics and machine condition monitoring, focused on dynamic vibration absorbers.",
               notes: [
-                "Conducted advanced research in vibration mechanics and tuning of dynamic vibration absorbers for complex mechanical systems.",
-                "Contributed to a graduate-level vibration mechanics textbook and supported instruction for core mechanical engineering coursework."
+                "Conducted advanced research in *vibration mechanics and machine condition monitoring*, focusing on dynamic vibration absorbers for complex mechanical systems.",
+                "Contributed to the development of a *graduate-level vibration mechanics textbook* while supporting instruction for core mechanical engineering coursework."
               ]
             },
             {
               id: "pratt",
-              title: "Turbine Engineer",
+              title: "Turbine Systems Engineer",
               company: "Pratt & Whitney / RTX",
               period: "2019 – 2020",
               energy: "$4M annual maintenance saved",
               symbol: "\u2708\uFE0F",
               logo: "assets/pratt.png",
               tint: "pref",
-              summary: "Thermo-mechanical lifing methods for single-crystal turbine blades at multinational aerospace and defense conglomerate.",
+              summary: "Thermo-mechanical lifing methods for single-crystal turbine blades at a multinational aerospace and defense conglomerate.",
               notes: [
-                "Developed a unified thermo-mechanical fatigue lifing methodology for jet-engine turbine blades leading to more accurate failure prediction and *$4M* lower annual maintenance cost across portfolio.",
-                "Supported analytical investigations of crack initiation and propagation in single-crystal superalloy blades under extreme thermal and mechanical loads."
+                "Developed a unified *thermo-mechanical fatigue lifing methodology* for jet-engine turbine blades, enabling more accurate prediction of failure modes and reducing annual maintenance costs by *$4M*.",
+                "Supported analytical investigations of crack initiation and propagation in single-crystal superalloy turbine blades under extreme thermal and mechanical loads.",
+                "Quantified damage mechanisms to assess *next-generation manufacturing treatments* for tomorrow's turbine hardware."
               ]
             },
             {
               id: "gfusion",
-              title: "Nuclear Design Engineer",
+              title: "Nuclear Fusion Engineer",
               company: "General Fusion",
               period: "2019 – 2020",
-              energy: "Nuclear Fusion Research",
+              energy: "Liquid-metal vortex test facility",
               symbol: "\u269B\uFE0F",
               logo: "assets/general_fusion.png",
               tint: "code",
               summary: "Experimental hardware for magnetized target fusion, raised $600M+ to commercialize fusion energy for the global power grid.",
               notes: [
-                "Designed, analyzed, and built an experimental test facility studying turbulent liquid-metal vortex behavior for advanced fusion reactor concepts.",
-                "Enabled fluid dynamicists and plasma physicists to study flow stability, turbulence, and vortex dynamics under extreme conditions."
+                "Designed, analyzed, and built an experimental test facility to study *turbulent flow behavior of liquid-metal vortices* for advanced fusion reactor concepts.",
+                "Enabled fluid dynamicists and plasma physicists to study flow stability, turbulence, and vortex dynamics under *extreme operating conditions*."
               ]
             },
             {
@@ -120,13 +121,13 @@ window.NIKKO_PORTFOLIO_CATALOG = {
               title: "Thermal Engineer",
               company: "Advanced Cooling Technologies",
               period: "2018",
-              energy: "High-flux PCM heat exchanger",
+              energy: "PCM heat exchanger · directed energy",
               symbol: "\u{1F321}\uFE0F",
               logo: "assets/act.png",
               tint: "brand",
               summary: "Advanced cooling systems for directed-energy and aerospace programs.",
               notes: [
-                "Designed and modeled a phase-change material (PCM) plate heat exchanger for thermal management of directed-energy systems under transient, high-flux loads.",
+                "Designed and modeled a *phase-change material (PCM) plate heat exchanger* for thermal management of directed energy weapons, addressing transient, high-flux cooling challenges.",
                 "Performed frequency-domain (FFT) analysis to optimize material selection and thermal response under pulsed energy loads."
               ]
             }
